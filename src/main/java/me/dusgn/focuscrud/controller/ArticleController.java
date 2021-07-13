@@ -38,7 +38,7 @@ public class ArticleController {
     // 게시물 수정 요청
     @PutMapping("/api/articles/{id}")
     public Long updateArticles(@PathVariable Long id, @RequestBody ArticleUpdateRequestDto requestDto) {
-        return articleService.updateArticles(id, requestDto);
+        return articleService.updateArticles(id, requestDto).getId();
     }
 
     // 게시물 삭제 요청

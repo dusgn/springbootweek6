@@ -44,12 +44,12 @@ public class ArticleService {
     }
 
     @Transactional
-    public Long updateArticles(Long id, ArticleUpdateRequestDto requestDto) {
+    public Article updateArticles(Long id, ArticleUpdateRequestDto requestDto) {
         Article article = articleRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("아이디가 존재하지 않습니다.")
         );
         article.update(requestDto);
-        return article.getId();
+        return article;
     }
 
     @Transactional
