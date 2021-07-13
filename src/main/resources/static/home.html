@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>게시판 홈</title>
+<script>
+    $(document).ready(function () {
+        $('#table-box').empty();
+        getArticles();
+    });
+    function getArticles() {
+        $.ajax({
+            type: "GET",
+            url: "/api/articles",
+            success: function (response) {
+                $('#search-result-box').empty();
+                for (let i = 0; i < response.length; i++) {
+                    let article = response[i];
+                    let userId = article.userId;
+                    let title = article.title;
+                    addHTML(userId, title);
+                }
+            }
+        });
+    }
+    function addHTML(userId, title){
+        let tempHtml = `<tr>
+                            <th>${userId}</th>
+                            <th>${title}</th>
+                            <th>31분 전</th>
+                        </tr>`
+        $('#table-box').append(tempHtml);
+    }
+
+</script>
+</head>
+<body>
+<div>
+    <div>
+        <p>게시판 목록</p>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>작성자</th>
+                    <th>제목</th>
+                    <th>최종 수정일</th>
+                </tr>
+                </thead>
+                <tbody id="table-box">
+                <tr>
+                    <th>testuser</th>
+                    <th>test title</th>
+                    <th>31분 전</th>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <button onclick=window.location.href="createarticle.html">게시글 작성하기</button>
+    </div>
+</div>
+</body>
+</html>

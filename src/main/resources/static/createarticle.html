@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>게시물 작성 페이지</title>
+
+    <script>
+        function createArticle() {
+            let userId = $('#userId').val();
+            let title = $('#title').val();
+            let content = $('#content').val();
+
+            let data = {
+                "userId":userId,
+                "title":title,
+                "content":content
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/api/articles",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (response) {
+                    alert('게시글이 작성되었습니다.');
+                    window.location.replace("/");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div>
+    <a>게시물을 작성해주세요</a>
+    <div>
+        <div>작성자</div>
+        <input type="text" id="userId">
+
+        <div>제목</div>
+        <input type="text" id="title">
+
+        <div>내용</div>
+        <input type="text" id="content">
+    </div>
+        <button onclick="createArticle()">게시글 작성하기</button>
+</div>
+</body>
+</html>
