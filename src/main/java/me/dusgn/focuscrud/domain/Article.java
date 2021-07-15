@@ -17,7 +17,7 @@ public class Article extends Timestamped{
     private Long id;
 
     @Column(nullable = false)
-    private String userId;
+    private Long userId;
 
     @Column(nullable = false)
     private String title;
@@ -25,8 +25,8 @@ public class Article extends Timestamped{
     @Column(nullable = false)
     private String content;
 
-    public Article(ArticleCreateRequestDto requestDto) {
-        this.userId = requestDto.getUserId();
+    public Article(ArticleCreateRequestDto requestDto, Long userId) {
+        this.userId = userId;
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
     }

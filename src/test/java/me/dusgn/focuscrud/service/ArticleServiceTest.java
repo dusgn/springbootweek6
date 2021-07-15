@@ -15,7 +15,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+
 class ArticleServiceTest {
 
     @Mock
@@ -40,7 +40,7 @@ class ArticleServiceTest {
         ArticleUpdateRequestDto updateRequestDto = new ArticleUpdateRequestDto(title, content);
 
         // when
-        Article result = articleService.updateArticles(id, updateRequestDto);
+        Article result = articleService.updateArticles(id, updateRequestDto, id);
         // then
         assertEquals(title, article.getTitle());
         assertEquals(content, article.getContent());

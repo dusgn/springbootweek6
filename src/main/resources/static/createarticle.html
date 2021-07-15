@@ -6,12 +6,10 @@
 
     <script>
         function createArticle() {
-            let userId = $('#userId').val();
             let title = $('#title').val();
             let content = $('#content').val();
 
             let data = {
-                "userId":userId,
                 "title":title,
                 "content":content
             };
@@ -33,9 +31,6 @@
 <div>
     <a>게시물을 작성해주세요</a>
     <div>
-        <div>작성자</div>
-        <input type="text" id="userId">
-
         <div>제목</div>
         <input type="text" id="title">
 

@@ -5,7 +5,7 @@ import me.dusgn.focuscrud.domain.Article;
 
 @Getter
 public class ArticleReadOneResponseDto {
-    private String userId;
+    private Long userId;
     private String title;
     private String content;
 

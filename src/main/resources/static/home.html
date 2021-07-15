@@ -16,20 +16,24 @@
                 $('#search-result-box').empty();
                 for (let i = 0; i < response.length; i++) {
                     let article = response[i];
+                    let articleId = article.id;
                     let userId = article.userId;
                     let title = article.title;
-                    addHTML(userId, title);
+                    addHTML(userId, title, articleId);
                 }
             }
         });
     }
-    function addHTML(userId, title){
+    function addHTML(userId, title, articleId){
         let tempHtml = `<tr>
-                            <th>${userId}</th>
-                            <th>${title}</th>
-                            <th>31분 전</th>
+                            <td>${userId}</td>
+                            <td style = "cursor:pointer;" onClick=window.location.href="detailarticle.html">${title}</td>
+                            <td>31분 전</td>
                         </tr>`
         $('#table-box').append(tempHtml);
+    }
+    function movetodetail(articleid) {
+        window.location.href = "detailarticle.html?id=" + articleid;
     }
 
 </script>
@@ -42,6 +46,7 @@
 <!--            <button onclick=window.location.href="createarticle.html">회원가입</button>-->
 <!--            <button onclick=window.location.href="createarticle.html">로그인</button>-->
 <!--        </div>-->
+        <button onclick=window.location.href="/user/logout">로그아웃</button>
         <div>
             <table>
                 <thead>

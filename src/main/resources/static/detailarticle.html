@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>게시판 게시글</title>
+
+    <script>
+        $(document).ready(function () {
+            $('#article-box').empty();
+            callOneArticle();
+
+        })
+
+        function callOneArticle() {
+            let params = location.search.substr(location.search.indexOf("?") + 1);
+            let temp = params.split("=");
+            let id = temp[1];
+            getOneArticle(id)
+        }
+
+        function getOneArticle(id) {
+            $('#article-box').empty();
+            $.ajax({
+                type: 'GET',
+                url: `/api/articles/${id}`,
+                success: function (response) {
+                    let userId = response.userId;
+                    let title = response.title;
+                    let content = response.content;
+                    showupdateHtml(userId, title, content)
+                }
+            })
+        }
+
+        function showupdateHtml(userId, title, content) {
+            let tempHtml = `<p>
+                                <strong>${title}</strong> <small>${userId}</small> <small>31m</small>
+                                <br>
+                                ${content}
+                            </p>`
+            $('#article-box').append(tempHtml);
+        }
+    </script>
+
+</head>
+<body>
+<div>
+    <p>게시글</p>
+    <div id="article-box">
+        <p>
+            <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+            <br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa
+            fringilla
+            egestas. Nullam condimentum luctus turpis.
+        </p>
+        <button>이전으로</button>
+        <button>수정하기</button>
+        <button>삭제하기</button>
+    </div>
+</div>
+</body>
+</html>
